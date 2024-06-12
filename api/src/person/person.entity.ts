@@ -10,7 +10,4 @@ export class Person {
 
   @Column({ name: 'phone_number' })
   phoneNumber: string;
-
-  @Column()
-  location: string;
 }

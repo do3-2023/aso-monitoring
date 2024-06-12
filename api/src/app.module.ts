@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { HealthModule } from './health/health.module';
 import { PersonModule } from './person/person.module';
 import { V1Creation1718197500327 } from './migrations/1718197500327-V1_Creation';
+import { V2NullablePersonLocation1718202607833 } from './migrations/1718202607833-V2_NullablePersonLocation';
 
 @Module({
   imports: [
@@ -22,7 +23,10 @@ import { V1Creation1718197500327 } from './migrations/1718197500327-V1_Creation'
         database: configService.get('DB_NAME'),
         autoLoadEntities: true,
         synchronize: false,
-        migrations: [V1Creation1718197500327],
+        migrations: [
+          V1Creation1718197500327,
+          V2NullablePersonLocation1718202607833,
+        ],
         migrationsRun: true,
       }),
       inject: [ConfigService],
