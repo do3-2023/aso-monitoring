@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/do3-2023/aso-monitoring/api:1.0.2
+          image: ghcr.io/do3-2023/aso-monitoring/api:1.0.3
           env:
             - name: DB_NAME
               value: db
