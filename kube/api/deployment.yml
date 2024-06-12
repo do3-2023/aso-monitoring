@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  selector:
+    matchLabels:
+      name: api
+  template:
+    metadata:
+      labels:
+        name: api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/do3-2023/aso-monitoring/api:1.0.0
+          env:
+            - name: DB_NAME
+              value: db
+            - name: DB_USER
+              value: user
+            - name: DB_PASSWORD
+              value: password
+            - name: DB_HOST
+              value: postgres-postgresql
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            periodSeconds: 5
