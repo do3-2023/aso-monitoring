@@ -5,4 +5,5 @@ auth:
 
 primary:
   persistence:
-    enabled: false
+    enabled: true
+    storageClass: local-path
