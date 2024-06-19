@@ -12,6 +12,7 @@ import { V4DropPersonLocation1718203249447 } from './migrations/1718203249447-V4
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     HealthModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
