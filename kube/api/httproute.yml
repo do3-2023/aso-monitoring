@@ -5,6 +5,8 @@ metadata:
 spec:
   parentRefs:
   - name: api-gateway
+  hostnames:
+  - a2.serpentard.dopolytech.fr
   rules:
   - backendRefs:
     - name: api
