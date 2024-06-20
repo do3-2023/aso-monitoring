@@ -2,6 +2,8 @@
 
 This contains the NestJS application and Kubernetes resource files for the Monitoring course at Polytech Montpellier. This is the repository of Alexandre Sollier.
 
+The application is running at [a2.serpentard.dopolytech.fr](http://a2.serpentard.dopolytech.fr/person).
+
 ## Usage
 
 ### Backend
