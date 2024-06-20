@@ -1,0 +1,17 @@
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: api-wasm
+spec:
+  image: ghcr.io/do3-2023/aso-monitoring/api:1.1.0-wasm
+  replicas: 1
+  executor: containerd-shim-spin
+  variables:
+    - name: db_host
+      value: postgres-postgresql
+    - name: db_user
+      value: user
+    - name: db_password
+      value: password
+    - name: db_name
+      value: db
