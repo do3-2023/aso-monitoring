@@ -1,12 +1,14 @@
 # Monitoring course
 
-This contains the NestJS application and Kubernetes resource files for the Monitoring course at Polytech Montpellier. This is the repository of Alexandre Sollier.
+This contains the Spin Go application and Kubernetes resource files for the Monitoring course at Polytech Montpellier. This is the repository of Alexandre Sollier.
+
+The application is running at [wasm.a2.serpentard.dopolytech.fr](http://wasm.a2.serpentard.dopolytech.fr/person).
 
 ## Usage
 
 ### Backend
 
-You need Node.js 20 to run this application. It is available in the [`api/`](./api/) directory.
+You need [Spin](https://developer.fermyon.com/spin/v2/install), [the Go toolchain](https://go.dev/learn/) and [the TinyGo compiler](https://tinygo.org/getting-started/) to run this application. It is available in the [`api/`](./api/) directory.
 
 This application is dependent on a Postgres database running. You can run the Docker Compose stack for this:
 
@@ -14,16 +16,10 @@ This application is dependent on a Postgres database running. You can run the Do
 docker compose up -d
 ```
 
-First, you'll need to install the dependencies:
+You can then immediately start the Spin application in watch mode:
 
 ```sh
-npm i
-```
-
-Then, you can simply start the application in development mode:
-
-```sh
-npm run start:dev
+spin watch
 ```
 
 The server will be running on port 3000.
@@ -48,6 +44,13 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.0.0/config/crd/standard/gateway.networking.k8s.io_referencegrants.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.0.0/config/crd/experimental/gateway.networking.k8s.io_grpcroutes.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.0.0/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml
+```
+
+You'll also need to install [the SpinKube operator](https://www.spinkube.dev/docs/spin-operator/installation/installing-with-helm/) to your cluster. Apply the
+`SpinAppExecutor` to the namespace where you'll deploy the application:
+
+```sh
+kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v0.2.0/spin-operator.shim-executor.yaml -n api-monitoring
 ```
 
 Finally, you can deploy the application to the cluster:
